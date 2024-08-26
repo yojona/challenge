@@ -2,6 +2,8 @@ import {
   Badge,
   Card,
   CardHeader,
+  HStack,
+  IconButton,
   Td,
   Text,
   Tr,
@@ -13,6 +15,7 @@ import CustomTable from '../components/CustomTable';
 import { api } from '../api';
 import { Log } from '../components/Form/types';
 import { formatDatetime } from '../util/string';
+import { FiRefreshCcw } from 'react-icons/fi';
 
 const Logger: FC = () => {
   const toast = useToast();
@@ -59,7 +62,16 @@ const Logger: FC = () => {
   return (
     <Card minW='container.xl'>
       <CardHeader>
-        <Text fontSize='2xl'>Logs</Text>
+        <HStack justify='space-between'>
+          <Text fontSize='2xl'>Logs</Text>
+          <IconButton
+            size='sm'
+            icon={<FiRefreshCcw />}
+            colorScheme='green'
+            aria-label='refresh'
+            onClick={() => fetchLogs()}
+          />
+        </HStack>
       </CardHeader>
       <CustomTable
         loading={loading}
