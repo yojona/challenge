@@ -3,6 +3,8 @@ import express from 'express';
 import { createConnection  } from 'typeorm';
 import router from './routes';
 import env from './util/env';
+import cors from 'cors';
+
 const app = express();
 
 createConnection({
@@ -16,6 +18,16 @@ createConnection({
   synchronize: true
 });
 
+app.use(
+  cors({
+    origin: [
+      'http://localhost:8080',
+    ],
+    methods: ['GET', 'PATCH'],
+    credentials: false,
+  })
+);
 app.use(express.json());
 app.use(router);
+
 app.listen(env.app.port, () => console.log(`Server listening at port ${env.app.port}`));

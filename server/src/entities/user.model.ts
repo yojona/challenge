@@ -28,24 +28,12 @@ export default class User {
   phoneNumber: string;
 
   @Column({
-    type: 'varchar',
-    default: null,
-    transformer: {
-      to: (value: string) => value,
-      from: (value: string) => value.split(','),
-    }
+    nullable: true,
   })
-  subscribed: MessageCategory[];
+  subscribed: string;
 
-  @Column({
-    type: 'varchar',
-    default: NotificationChannel.EMAIL,
-    transformer: {
-      to: (value: string) => value,
-      from: (value: string) => value.split(','),
-    }
-  })
-  channels: NotificationChannel[]
+  @Column({ default: NotificationChannel.EMAIL })
+  channels: string;
 
   @OneToMany(() => Log, log => log.user, { nullable: true })
   logs: Log[];
