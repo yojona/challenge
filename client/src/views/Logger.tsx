@@ -67,7 +67,7 @@ const Logger: FC = () => {
           <IconButton
             size='sm'
             icon={<FiRefreshCcw />}
-            colorScheme='green'
+            colorScheme='teal'
             aria-label='refresh'
             onClick={() => fetchLogs()}
           />
@@ -99,7 +99,7 @@ const Logger: FC = () => {
                 variant='solid'
                 minW={84}
                 textAlign='center'
-                colorScheme='green'
+                colorScheme='teal'
                 m={1}
                 px={2}
                 py={1}

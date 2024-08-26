@@ -1,6 +1,7 @@
 import {
   Avatar,
   Badge,
+  Button,
   Card,
   CardHeader,
   HStack,
@@ -20,16 +21,22 @@ import {
 } from '@chakra-ui/react';
 import React, { FC, useEffect, useMemo, useState } from 'react';
 import useFetch from 'use-http';
-import { FiPlus, FiTrash2 } from 'react-icons/fi';
+import { FiPlus, FiSend, FiTrash2 } from 'react-icons/fi';
 import { filterUsersBySearch, sortUsers } from '../util/user';
 import CustomTable from '../components/CustomTable';
 import { APIResponse, MessageCategory, NotificationChannel, ResourceType, User, UserAPI } from '../components/Form/types';
 import { api } from '../api';
 import Form from '../components/Form';
+import MessageComposer from '../components/MessageComposer';
 
 const Users: FC = () => {
   const toast = useToast();
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isComposerOpen,
+    onOpen: onComposerOpen,
+    onClose: onComposerClose,
+  } = useDisclosure();
 
   const [rawUsers, setRawUsers] = useState<User[]>([]);
   const [search, setSearch] = useState<string>('');
@@ -174,7 +181,17 @@ const Users: FC = () => {
     <>
       <Card minW='container.xl'>
         <CardHeader>
-          <Text fontSize='2xl'>Users</Text>
+          <HStack justify='space-between'>
+            <Text fontSize='2xl'>Users</Text>
+            <Button
+              size='sm'
+              onClick={onComposerOpen}
+              colorScheme='teal'
+              leftIcon={<FiSend />}
+            >
+              New message
+            </Button>
+          </HStack>
         </CardHeader>
         <CustomTable
           loading={loading}
@@ -221,7 +238,7 @@ const Users: FC = () => {
                     variant='solid'
                     minW={84}
                     textAlign='center'
-                    colorScheme='green'
+                    colorScheme='teal'
                     m={1}
                     px={2}
                     py={1}
@@ -231,7 +248,7 @@ const Users: FC = () => {
                       <IconButton
                         size='xs'
                         icon={<FiTrash2 />}
-                        colorScheme='green'
+                        colorScheme='teal'
                         aria-label='unsuscribe'
                         onClick={() => leaveOrUnsubscribe(user.id, ResourceType.CATEGORY, subscription)}
                       />
@@ -241,7 +258,7 @@ const Users: FC = () => {
                 <IconButton
                   size='sm'
                   icon={<FiPlus />}
-                  colorScheme='green'
+                  colorScheme='teal'
                   aria-label='subscribe'
                   onClick={() => handleOpenModal(user.id, ResourceType.CATEGORY)}
                 />
@@ -295,6 +312,22 @@ const Users: FC = () => {
               userId={selectedUser as number}
               resourceType={resourceType}
               onClose={onClose}
+              onSuccess={fetchUsers}
+            />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
+      <Modal isOpen={isComposerOpen} onClose={onComposerClose} size='md'>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            New Message
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <MessageComposer
+              onClose={onComposerClose}
               onSuccess={fetchUsers}
             />
           </ModalBody>
