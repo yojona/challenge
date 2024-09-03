@@ -24,4 +24,4 @@ make sure `DB_HOST` in `server/.env` points to the container name of the databas
     - Docker
 
 # Logs
-The system will log every change in the user preferences, joining channels, subscribing categories, etc. Logs for messages are not implemented.
+The system will log every notification for each user subscribed.
