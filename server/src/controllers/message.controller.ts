@@ -1,9 +1,10 @@
-import { MessageCategory } from '../entities/user.model';
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { check } from 'express-validator';
 import { validate } from './validator.controller';
 import Message from '../entities/message.model';
+import { NotificationManager } from '../services/notification.service';
+import { MessageCategory } from '../types';
 
 export default {
   createMessage: {
@@ -24,6 +25,7 @@ export default {
         newMessage.message = content;
 
         await model.save(newMessage);
+        await NotificationManager.notify(category, content);
         return res.status(200).json({ message: 'Message sent.' });
       } catch (e) {
         console.log(e);

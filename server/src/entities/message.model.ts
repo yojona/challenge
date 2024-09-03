@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { MessageCategory } from './user.model';
+import { MessageCategory } from '../types';
 
 @Entity()
 export default class Message {

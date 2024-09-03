@@ -1,4 +1,4 @@
-import { MessageCategory, NotificationChannel } from '../entities/user.model';
+import { ChannelType, MessageCategory } from '../types';
 
 export const MessageTemplates = {
   categories: {
@@ -20,7 +20,7 @@ export const MessageTemplates = {
 export const buildMessage = (
   message: string,
   userId: number,
-  resourceType: MessageCategory | NotificationChannel,
+  resourceType: MessageCategory | ChannelType,
 ) => {
   const messageWithUserId = message.replace('%user_id%', `${userId}`);
   const messageWithResoureType = messageWithUserId.replace('%resource%', resourceType);

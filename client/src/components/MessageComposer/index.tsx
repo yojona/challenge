@@ -69,7 +69,7 @@ const MessageComposer: FC<MessageComposerProps> = ({
             value={category}
           >
             {Object.entries(MessageCategory).map(([categoryName, categoryValue]) => (
-              <option value={categoryValue}>{categoryName}</option>
+              <option key={categoryValue} value={categoryValue}>{categoryName}</option>
             ))}
           </Select>
         </HStack>

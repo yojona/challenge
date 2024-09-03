@@ -42,5 +42,5 @@ export type Log = {
   id: number;
   message: string;
   createdAt: string;
-  type: string
+  category: string
 };

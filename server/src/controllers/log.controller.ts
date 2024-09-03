@@ -1,4 +1,4 @@
-import LogModel, { LogType } from '../entities/log.model';
+import LogModel from '../entities/log.model';
 import { Request, Response } from 'express';
 import { getRepository } from 'typeorm';
 import { pass } from './validator.controller';

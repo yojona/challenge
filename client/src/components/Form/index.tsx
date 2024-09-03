@@ -107,13 +107,13 @@ const Form: FC<FormProps> = ({
         >
           {resourceType === ResourceType.CATEGORY && (
             Object.entries(MessageCategory).map(([categoryName, categoryValue]) => (
-              <option value={categoryValue}>{categoryName}</option>
+              <option key={categoryValue} value={categoryValue}>{categoryName}</option>
             ))
           )}
 
           {resourceType === ResourceType.CHANNEL && (
             Object.entries(NotificationChannel).map(([channelName, channelValue]) => (
-              <option value={channelValue}>{channelName}</option>
+              <option key={channelValue} value={channelValue}>{channelName}</option>
             ))
           )}
         </Select>

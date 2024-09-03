@@ -235,6 +235,7 @@ const Users: FC = () => {
               <Td>
                 {user.subscribed.map((subscription) => (
                   <Badge
+                    key={subscription}
                     variant='solid'
                     minW={84}
                     textAlign='center'
@@ -266,6 +267,7 @@ const Users: FC = () => {
               <Td>
                 {user.channels.map((channel) => (
                   <Badge
+                    key={channel}
                     variant='solid'
                     minW={84}
                     textAlign='center'

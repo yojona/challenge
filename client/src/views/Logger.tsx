@@ -26,8 +26,8 @@ const Logger: FC = () => {
     label: 'Created at',
     value: 'createdAt',
   }, {
-    label: 'Log type',
-    value: 'type',
+    label: 'Log category',
+    value: 'category',
   }];
 
   const {
@@ -104,7 +104,7 @@ const Logger: FC = () => {
                 px={2}
                 py={1}
               >
-                <Text>{log.type}</Text>
+                <Text>{log.category}</Text>
               </Badge>
             </Td>
           </Tr>

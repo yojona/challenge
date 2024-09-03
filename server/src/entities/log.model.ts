@@ -1,12 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import User from './user.model';
-
-export enum LogType {
-  GENERAL_LOG='GENERAL_LOG',
-  CATEGORY_LOG='CATEGORY_LOG',
-  CHANNEL_LOG='CHANNEL_LOG'
-}
-
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { MessageCategory } from '../types';
 @Entity()
 export default class Log {
   @PrimaryGeneratedColumn()
@@ -18,20 +11,15 @@ export default class Log {
   @Column({ type: 'timestamp with time zone', default: new Date() })
   createdAt: Date;
 
-  @Column({ type: 'enum', enum: LogType, default: LogType.GENERAL_LOG })
-  type: LogType;
-
-  @ManyToOne(() => User, user => user, {
-    eager: true
-  })
-  user: User;
+  @Column({ type: 'enum', enum: MessageCategory, default: MessageCategory.SPORTS })
+  category: MessageCategory;
 
   toAPI = (): Partial<Log> => {
     return {
       id: this.id,
       message: this.message,
       createdAt: this.createdAt,
-      type: this.type,
+      category: this.category,
     }
   }
 }
