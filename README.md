@@ -1,4 +1,5 @@
-<img width="1357" alt="image" src="https://github.com/user-attachments/assets/a2dc6cc8-4cc1-4100-9e46-96588808239a">
+<img width="1352" alt="image" src="https://github.com/user-attachments/assets/5379bda9-7c74-4b23-9115-d4b7ab913a8d">
+<img width="1374" alt="image" src="https://github.com/user-attachments/assets/698afb36-c970-4bbc-b8b4-9e7e7f2ec55b">
 
 # Prerequisites
 Make sure you have Docker installed, the seeds will run automatically
